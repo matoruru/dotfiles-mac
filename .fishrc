@@ -1,0 +1,21 @@
+#!/bin/fish
+
+# To use 'npm i -g' wituout sudo
+if test -d ~/.npm-global
+   set -x PATH ~/.npm-global/bin $PATH
+end
+
+if test -d ~/.nodebrew
+   set -x PATH $HOME/.nodebrew/current/bin $PATH
+end
+
+if test -d ~/.yarn-global
+   set -x PATH /home/matoruru/.yarn-global/bin $PATH
+end
+
+set -g simple_ass_prompt_greeting Hello Shigeta.
+
+set -x PATH ~/.local/bin     $PATH
+set -x PATH ~/nvim-osx64/bin $PATH
+
+set -x LC_ALL en_US.UTF-8
