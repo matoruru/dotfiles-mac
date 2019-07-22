@@ -10,7 +10,7 @@ if test -d ~/.nodebrew
 end
 
 if test -d ~/.yarn-global
-   set -x PATH /home/matoruru/.yarn-global/bin $PATH
+   set -x PATH $HOME/.yarn-global/bin $PATH
 end
 
 set -g simple_ass_prompt_greeting Hello Shigeta.
