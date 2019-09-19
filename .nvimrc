@@ -12,12 +12,22 @@ Plug 'cohama/lexima.vim'
 " --- --- IDE
 Plug 'vim-scripts/vim-auto-save'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf'
 
 " --- --- PureScript
 Plug 'purescript-contrib/purescript-vim'
 
 " --- --- Nix
 Plug 'LnL7/vim-nix'
+
+" --- --- HTML
+Plug 'mattn/emmet-vim'
+
+" --- --- CSV
+Plug 'chrisbra/csv.vim'
+
+" --- --- Apes
+Plug 'ejholmes/vim-forcedotcom'
 
 " --- --- Utility
 Plug 'simeji/winresizer'
@@ -79,10 +89,13 @@ nnoremap <F6> :<C-u>tabnew ~/.nvimrc<CR>
 nnoremap <F7> :<C-u>source ~/.nvimrc<CR>
 nnoremap <F8> :set relativenumber! number!<CR>
 
+nnoremap <F10> :!code %<CR>
+
 nnoremap <silent> <Esc> :noh<CR><Esc>
 
 nnoremap cp "+p
 nnoremap cy "+y
+vnoremap cy "+y
 
 nnoremap + <C-a>
 nnoremap - <C-x>

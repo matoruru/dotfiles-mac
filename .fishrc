@@ -13,9 +13,16 @@ if test -d ~/.yarn-global
    set -x PATH $HOME/.yarn-global/bin $PATH
 end
 
-set -g simple_ass_prompt_greeting Hello Shigeta.
+#set -g simple_ass_prompt_greeting Hello Shigeta.
 
 set -x PATH ~/.local/bin     $PATH
 set -x PATH ~/nvim-osx64/bin $PATH
 
+set -x PATH ~/.cabal/bin $PATH
+set -x PATH ~/.ghcup/bin $PATH
+
 set -x LC_ALL en_US.UTF-8
+
+alias chrome='open -a "Google Chrome"'
+
+eval (starship init fish)
