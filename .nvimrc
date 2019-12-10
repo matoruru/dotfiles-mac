@@ -8,6 +8,7 @@ Plug 'altercation/vim-colors-solarized'
 
 " --- --- Input
 Plug 'cohama/lexima.vim'
+Plug 'unblevable/quick-scope'
 
 " --- --- IDE
 Plug 'vim-scripts/vim-auto-save'
@@ -26,15 +27,16 @@ Plug 'mattn/emmet-vim'
 " --- --- CSV
 Plug 'chrisbra/csv.vim'
 
-" --- --- Apes
+" --- --- Apex
 Plug 'ejholmes/vim-forcedotcom'
 
 " --- --- Utility
 Plug 'simeji/winresizer'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'matoruru/vim-hjkl-warning'
+Plug 'mzlogin/vim-markdown-toc'
 
 call plug#end()
-
 
 " --- Theme
 set background=dark
@@ -47,6 +49,16 @@ let g:airline_powerline_fonts=1
 
 " --- Lexima.vim
 let g:lexima_enable_basic_rules = 1
+
+
+"" --- LJKL warning
+let g:hjkl_warning_win_width    = 2
+let g:hjkl_warning_win_height   = 1
+let g:hjkl_warning_min_column   = 3
+let g:hjkl_warning_min_line     = 3
+let g:hjkl_warning_max_repeat   = 5
+let g:hjkl_warning_message      = ["😡"]
+let g:hjkl_warning_enable_title = v:false
 
 
 " --- Auto save
@@ -79,9 +91,9 @@ noremap  <C-k> <C-w>k
 
 nnoremap Q <nop>
 
-noremap : q:i
+noremap  : q:i
 vnoremap : :
-noremap / q/i
+noremap  / q/i
 
 nnoremap <C-n> :Ex<CR>
 
