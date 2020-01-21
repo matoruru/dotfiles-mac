@@ -18,6 +18,9 @@ Plug 'junegunn/fzf'
 " --- --- PureScript
 Plug 'purescript-contrib/purescript-vim'
 
+" --- --- TypeScript
+Plug 'leafgarland/typescript-vim'
+
 " --- --- Nix
 Plug 'LnL7/vim-nix'
 
@@ -32,7 +35,7 @@ Plug 'ejholmes/vim-forcedotcom'
 
 " --- --- Utility
 Plug 'simeji/winresizer'
-Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 "Plug 'matoruru/vim-hjkl-warning'
 Plug 'mzlogin/vim-markdown-toc'
 
@@ -54,6 +57,7 @@ let g:lexima_enable_basic_rules = 1
 " --- Auto save
 let g:auto_save = 1
 let g:auto_save_silent = 1
+let g:auto_save_in_insert_mode = 0
 
 
 " --- PureScript
@@ -62,8 +66,14 @@ let purescript_indent_case = 2
 let purescript_indent_let = 2
 let purescript_indent_where = 2
 let purescript_indent_do = 2
-let purescript_indent_in = 2
+let purescript_indent_in = 0
 let purescript_indent_dot = v:true
+
+
+" --- vim-better-whitespace
+let g:better_whitespace_enabled = 1
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
 
 
 " --- Remap keys
