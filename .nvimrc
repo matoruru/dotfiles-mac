@@ -1,6 +1,9 @@
 " --- Plugins
 call plug#begin('~/.vim/plugged')
 
+" --- --- EditorConfig
+Plug 'editorconfig/editorconfig-vim'
+
 " --- --- Theme
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -36,7 +39,6 @@ Plug 'ejholmes/vim-forcedotcom'
 " --- --- Utility
 Plug 'simeji/winresizer'
 Plug 'ntpeters/vim-better-whitespace'
-"Plug 'matoruru/vim-hjkl-warning'
 Plug 'mzlogin/vim-markdown-toc'
 
 call plug#end()
@@ -60,20 +62,8 @@ let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
 
 
-" --- PureScript
-let purescript_indent_if = 2
-let purescript_indent_case = 2
-let purescript_indent_let = 2
-let purescript_indent_where = 2
-let purescript_indent_do = 2
-let purescript_indent_in = 0
-let purescript_indent_dot = v:true
-
-
 " --- vim-better-whitespace
 let g:better_whitespace_enabled = 1
-let g:strip_whitespace_on_save = 1
-let g:strip_whitespace_confirm = 0
 
 
 " --- Remap keys
@@ -144,9 +134,6 @@ set hlsearch
 set ai
 set showmatch
 set ruler
-set tabstop=2
-set shiftwidth=2
-set expandtab
 
 set incsearch
 

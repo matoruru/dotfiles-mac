@@ -1,0 +1,20 @@
+# https://editorconfig.org
+
+root = true
+
+[*]
+# Ref: facebook/react
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+# max_line_length = 80
+trim_trailing_whitespace = true
+
+[*.{purs,js}]
+# Ref: purescript-halogen/purescript-halogen
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
