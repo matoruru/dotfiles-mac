@@ -38,8 +38,11 @@ Plug 'ejholmes/vim-forcedotcom'
 
 " --- --- Utility
 Plug 'simeji/winresizer'
-Plug 'ntpeters/vim-better-whitespace'
+"Plug 'ntpeters/vim-better-whitespace'
 Plug 'mzlogin/vim-markdown-toc'
+
+" --- --- Filer
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
@@ -66,6 +69,11 @@ let g:auto_save_in_insert_mode = 0
 let g:better_whitespace_enabled = 1
 
 
+" --- NERDTree
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
+
+
 " --- Remap keys
 set backspace=0
 noremap   <BackSpace> <nop>
@@ -85,8 +93,6 @@ noremap  : q:i
 vnoremap : :
 noremap  / q/i
 
-nnoremap <C-n> :Ex<CR>
-
 nnoremap <F6> :<C-u>tabnew ~/.nvimrc<CR>
 nnoremap <F7> :<C-u>source ~/.nvimrc<CR>
 nnoremap <F8> :set relativenumber! number!<CR>
@@ -104,10 +110,10 @@ nnoremap - <C-x>
 
 tnoremap <ESC> <C-\><C-n>
 
-nnoremap ]b :bn<CR>
-nnoremap [b :bp<CR>
-nnoremap ]B :bl<CR>
-nnoremap [B :bf<CR>
+nnoremap <expr> ]b (exists('t:NERDTreeBufName') && bufname("%") == t:NERDTreeBufName ? '<C-w>l' : '') . ':bn<CR>'
+nnoremap <expr> [b (exists('t:NERDTreeBufName') && bufname("%") == t:NERDTreeBufName ? '<C-w>l' : '') . ':bp<CR>'
+nnoremap <expr> ]B (exists('t:NERDTreeBufName') && bufname("%") == t:NERDTreeBufName ? '<C-w>l' : '') . ':bl<CR>'
+nnoremap <expr> [B (exists('t:NERDTreeBufName') && bufname("%") == t:NERDTreeBufName ? '<C-w>l' : '') . ':bf<CR>'
 
 nnoremap ]a :next<CR>
 nnoremap [a :prev<CR>
