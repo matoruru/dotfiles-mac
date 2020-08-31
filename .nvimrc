@@ -17,6 +17,8 @@ Plug 'unblevable/quick-scope'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf'
+Plug 'eslint/eslint'
+Plug 'vim-syntastic/syntastic'
 
 " --- --- PureScript
 Plug 'purescript-contrib/purescript-vim'
@@ -36,15 +38,28 @@ Plug 'chrisbra/csv.vim'
 " --- --- Apex
 Plug 'ejholmes/vim-forcedotcom'
 
+" --- --- Git
+Plug 'airblade/vim-gitgutter'
+
 " --- --- Utility
 Plug 'simeji/winresizer'
 "Plug 'ntpeters/vim-better-whitespace'
 Plug 'mzlogin/vim-markdown-toc'
+Plug 'moll/vim-bbye'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " --- --- Filer
 Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 
 call plug#end()
+
+
+" Set leader key
+let mapleader = "\<Space>"
+
 
 " --- Theme
 set background=dark
@@ -70,8 +85,25 @@ let g:better_whitespace_enabled = 1
 
 
 " --- NERDTree
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeShowHidden = 1
+function IsInNERDTreeBuf()
+  return exists('t:NERDTreeBufName') && bufname("%") == t:NERDTreeBufName
+endfunction
+
+
+" --- Bbye
+noremap <silent> <C-w> :Bdelete<CR>
+
+" --- fzf.vim
+nnoremap <silent> <C-f> :GFiles<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+
+" --- syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_javascript_checkers = ['eslint']
 
 
 " --- Remap keys
@@ -93,6 +125,8 @@ noremap  : q:i
 vnoremap : :
 noremap  / q/i
 
+map <C-n> :NERDTreeToggle<CR>
+
 nnoremap <F6> :<C-u>tabnew ~/.nvimrc<CR>
 nnoremap <F7> :<C-u>source ~/.nvimrc<CR>
 nnoremap <F8> :set relativenumber! number!<CR>
@@ -110,10 +144,10 @@ nnoremap - <C-x>
 
 tnoremap <ESC> <C-\><C-n>
 
-nnoremap <expr> ]b (exists('t:NERDTreeBufName') && bufname("%") == t:NERDTreeBufName ? '<C-w>l' : '') . ':bn<CR>'
-nnoremap <expr> [b (exists('t:NERDTreeBufName') && bufname("%") == t:NERDTreeBufName ? '<C-w>l' : '') . ':bp<CR>'
-nnoremap <expr> ]B (exists('t:NERDTreeBufName') && bufname("%") == t:NERDTreeBufName ? '<C-w>l' : '') . ':bl<CR>'
-nnoremap <expr> [B (exists('t:NERDTreeBufName') && bufname("%") == t:NERDTreeBufName ? '<C-w>l' : '') . ':bf<CR>'
+nnoremap <silent> <expr> ]b IsInNERDTreeBuf() ? '<C-w>l:bn<CR>' : ':bn<CR>'
+nnoremap <silent> <expr> [b IsInNERDTreeBuf() ? '<C-w>l:bp<CR>' : ':bp<CR>'
+nnoremap <silent> <expr> ]B IsInNERDTreeBuf() ? '<C-w>l:bl<CR>' : ':bl<CR>'
+nnoremap <silent> <expr> [B IsInNERDTreeBuf() ? '<C-w>l:bf<CR>' : ':bf<CR>'
 
 nnoremap ]a :next<CR>
 nnoremap [a :prev<CR>
