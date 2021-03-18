@@ -25,4 +25,14 @@ set -x LC_ALL en_US.UTF-8
 
 alias chrome='open -a "Google Chrome"'
 
+function finder
+  set -l dir $argv[1]
+
+  if test "$dir" = ""
+    open .
+  else
+    open "$dir"
+  end
+end
+
 eval (starship init fish)
