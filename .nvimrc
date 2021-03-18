@@ -1,9 +1,6 @@
 " --- Plugins
 call plug#begin('~/.vim/plugged')
 
-" --- --- EditorConfig
-Plug 'editorconfig/editorconfig-vim'
-
 " --- --- Theme
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -19,12 +16,17 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf'
 Plug 'eslint/eslint'
 Plug 'vim-syntastic/syntastic'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/0.x'
+  \ }
 
 " --- --- PureScript
 Plug 'purescript-contrib/purescript-vim'
 
 " --- --- TypeScript
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 " --- --- Nix
 Plug 'LnL7/vim-nix'
@@ -44,10 +46,12 @@ Plug 'airblade/vim-gitgutter'
 " --- --- Utility
 Plug 'simeji/winresizer'
 "Plug 'ntpeters/vim-better-whitespace'
+Plug 'plasticboy/vim-markdown'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'moll/vim-bbye'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'machakann/vim-highlightedyank'
 
 " --- --- Filer
 Plug 'preservim/nerdtree'
@@ -74,10 +78,22 @@ let g:airline_powerline_fonts=1
 let g:lexima_enable_basic_rules = 1
 
 
+" --- quick-scope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+
 " --- Auto save
 let g:auto_save = 1
 let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
+
+
+" --- Coc
+" GoTo code navigation.
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
 
 
 " --- vim-better-whitespace
@@ -90,8 +106,18 @@ function IsInNERDTreeBuf()
 endfunction
 
 
+" PureScript
+let purescript_indent_if = 2
+let purescript_indent_case = 2
+let purescript_indent_let = 2
+let purescript_indent_where = 2
+let purescript_indent_do = 2
+
+" --- My commands
+command! Nt tabnew|term
+
 " --- Bbye
-noremap <silent> <C-w> :Bdelete<CR>
+noremap <silent> <leader><C-w> :Bdelete<CR>
 
 " --- fzf.vim
 nnoremap <silent> <C-f> :GFiles<CR>
@@ -105,6 +131,11 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checkers = ['eslint']
 
+" --- vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
+" --- vim-highlightedyank
+let g:highlightedyank_highlight_duration = 500
 
 " --- Remap keys
 set backspace=0
@@ -120,10 +151,6 @@ noremap  <C-j> <C-w>j
 noremap  <C-k> <C-w>k
 
 nnoremap Q <nop>
-
-noremap  : q:i
-vnoremap : :
-noremap  / q/i
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -143,6 +170,23 @@ nnoremap + <C-a>
 nnoremap - <C-x>
 
 tnoremap <ESC> <C-\><C-n>
+
+" Use the pattern to serach the history
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+" Use the command-line mode with emacs keybindings
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-e> <End>
+cnoremap <C-a> <Home>
+
+" Open the command line window
+cnoremap <C-g> <C-f>
+
+" Highlight without jumping
+noremap * *``
+noremap # #``
 
 nnoremap <silent> <expr> ]b IsInNERDTreeBuf() ? '<C-w>l:bn<CR>' : ':bn<CR>'
 nnoremap <silent> <expr> [b IsInNERDTreeBuf() ? '<C-w>l:bp<CR>' : ':bp<CR>'
@@ -164,18 +208,25 @@ nnoremap [t gT
 nnoremap ]T :tabl<CR>
 nnoremap [T :tabfir<CR>
 
+cnoremap <silent> <C-t> :sp\|resize 20\|term<CR>
 
 " --- Basic settings
 set cursorline
 set relativenumber number
 
+highlight Comment cterm=italic gui=italic
+
+set splitbelow
+
 set mouse=
+set nowrapscan
 set hlsearch
 set ai
 set showmatch
 set ruler
 
 set incsearch
+set inccommand=split
 
 let &t_SI .= "\e[6 q"
 let &t_EI .= "\e[2 q"
@@ -185,6 +236,7 @@ set nobackup
 set nowritebackup
 set noundofile
 set noswapfile
+set nofixendofline
 
 set visualbell t_vb=
 set novisualbell
