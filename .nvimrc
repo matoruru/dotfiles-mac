@@ -224,6 +224,9 @@ set hlsearch
 set ai
 set showmatch
 set ruler
+set tabstop=2
+set shiftwidth=2
+set expandtab
 
 set incsearch
 set inccommand=split
