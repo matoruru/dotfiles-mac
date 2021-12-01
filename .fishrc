@@ -15,8 +15,9 @@ end
 
 #set -g simple_ass_prompt_greeting Hello Shigeta.
 
+set -x GPG_TTY (tty)
+
 set -x PATH ~/.local/bin     $PATH
-set -x PATH ~/nvim-osx64/bin $PATH
 
 set -x PATH ~/.cabal/bin $PATH
 set -x PATH ~/.ghcup/bin $PATH
@@ -83,3 +84,4 @@ if command -sq starship
   # https://starship.rs/#fish
   starship init fish | source
 end
+alias hico="history|peco"

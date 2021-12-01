@@ -45,13 +45,13 @@ Plug 'airblade/vim-gitgutter'
 
 " --- --- Utility
 Plug 'simeji/winresizer'
-"Plug 'ntpeters/vim-better-whitespace'
-Plug 'plasticboy/vim-markdown'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'moll/vim-bbye'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'machakann/vim-highlightedyank'
+Plug 'google/vim-searchindex'
 
 " --- --- Filer
 Plug 'preservim/nerdtree'
